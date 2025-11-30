@@ -3,39 +3,39 @@ import { Menu, X, ArrowRight, Github, Twitter, Linkedin, Mail, Code2, Cpu, Globe
 import emailjs from '@emailjs/browser';
 
 // --- Componente SEO (Dinámico) ---
-const SEO = () => {
-  useEffect(() => {
-    // Título de la pestaña
-    document.title = "Fasterplop | Desarrollo Web de Alto Rendimiento";
+// const SEO = () => {
+//   useEffect(() => {
+//     // Título de la pestaña
+//     document.title = "Fasterplop | Desarrollo Web de Alto Rendimiento";
     
-    // Metaetiquetas críticas para redes sociales (Open Graph y Twitter)
-    const metaTags = [
-      { name: 'description', content: "Ayudo a empresas a escalar ventas mediante desarrollo web optimizado. Especialista en React, SEO técnico y Accesibilidad web." },
-      { property: 'og:title', content: "Fasterplop | Desarrollo Web & SEO" },
-      { property: 'og:description', content: "Desarrollo web de alto rendimiento para empresas que buscan escalar." },
-      { property: 'og:image', content: "https://fasterplop.com/og-image-main.jpg" }, // ¡Asegúrate de crear y subir esta imagen!
-      { property: 'og:type', content: 'website' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'robots', content: 'index, follow' }
-    ];
+//     // Metaetiquetas críticas para redes sociales (Open Graph y Twitter)
+//     const metaTags = [
+//       { name: 'description', content: "Ayudo a empresas a escalar ventas mediante desarrollo web optimizado. Especialista en React, SEO técnico y Accesibilidad web." },
+//       { property: 'og:title', content: "Fasterplop | Desarrollo Web & SEO" },
+//       { property: 'og:description', content: "Desarrollo web de alto rendimiento para empresas que buscan escalar." },
+//       { property: 'og:image', content: "https://fasterplop.com/og-image-main.jpg" }, // ¡Asegúrate de crear y subir esta imagen!
+//       { property: 'og:type', content: 'website' },
+//       { name: 'twitter:card', content: 'summary_large_image' },
+//       { name: 'robots', content: 'index, follow' }
+//     ];
 
-    metaTags.forEach(({ name, property, content }) => {
-      let element = document.querySelector(`meta[name="${name}"]`) || document.querySelector(`meta[property="${property}"]`);
-      if (!element) {
-        element = document.createElement('meta');
-        if (name) element.setAttribute('name', name);
-        if (property) element.setAttribute('property', property);
-        document.head.appendChild(element);
-      }
-      element.setAttribute('content', content);
-    });
+//     metaTags.forEach(({ name, property, content }) => {
+//       let element = document.querySelector(`meta[name="${name}"]`) || document.querySelector(`meta[property="${property}"]`);
+//       if (!element) {
+//         element = document.createElement('meta');
+//         if (name) element.setAttribute('name', name);
+//         if (property) element.setAttribute('property', property);
+//         document.head.appendChild(element);
+//       }
+//       element.setAttribute('content', content);
+//     });
 
-    // Definir idioma español
-    document.documentElement.lang = 'es';
-  }, []);
+//     // Definir idioma español
+//     document.documentElement.lang = 'es';
+//   }, []);
 
-  return null;
-};
+//   return null;
+// };
 
 // --- Estilos Globales & Animaciones CSS ---
 const GlobalStyles = () => (
@@ -544,7 +544,7 @@ const App = () => {
   return (
     <div className="bg-black min-h-screen text-white selection:bg-emerald-500 selection:text-black font-sans">
       <GlobalStyles />
-      <SEO />
+      {/* <SEO /> */}
       
       {/* Skip Link para Accesibilidad */}
       <a href="#home" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[60] bg-emerald-500 text-black px-4 py-2 font-bold rounded">
