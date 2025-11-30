@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Mapa del sitio para los bots
+
+Sitemap: https://www.google.com/search?q=https://fasterplop.com/sitemap.xml

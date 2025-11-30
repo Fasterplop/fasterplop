@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowRight, Github, Twitter, Linkedin, Mail, Code2, Cpu, Globe, Zap, Layout, Search, Send, ChevronRight, BarChart3, Lock, Smartphone } from 'lucide-react';
-
+import emailjs from '@emailjs/browser';
 
 // --- Componente SEO (Dinámico) ---
 const SEO = () => {
@@ -363,12 +363,40 @@ const Expertise = () => {
 };
 
 const Contact = () => {
+  const Contact = () => {
+  const formRef = useRef();
+  const [status, setStatus] = useState("idle");
+
+  // --- CONFIGURACIÓN DE EMAILJS ---
+  // Reemplaza estos valores con los que obtuviste en tu panel de EmailJS
+  const SERVICE_ID = "service_4ovvwye";      // Ej: service_x9f2k1
+  const TEMPLATE_ID = "template_0kx8zqq";    // Ej: template_8a2b3c
+  const PUBLIC_KEY = "gWC4t7Wtt43sff5RJ";      // Ej: user_9As8d7F6
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+    
+    setStatus("sending");
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      .then((result) => {
+        console.log('Email enviado:', result.text);
+        setStatus("success");
+        formRef.current.reset(); // Limpia el formulario
+      }, (error) => {
+        console.error('Error al enviar:', error.text);
+        setStatus("error");
+      });
+  };
   return (
+    
+    
     <section id="contact" className="bg-black py-32 px-6 border-t border-white/5 flex flex-col justify-center">
       <div className="container mx-auto max-w-4xl">
         <SectionHeader number="// 04" title="CONTACTO" subtitle="¿Listo para escalar tu proyecto?" />
 
-        <RevealOnScroll>
+        {/* <RevealOnScroll>
           <SpotlightCard className="mt-12 p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-transparent">
             <div className="bg-[#050505] rounded-2xl p-8 md:p-12 relative overflow-hidden h-full">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.5)]"></div>
@@ -404,6 +432,72 @@ const Contact = () => {
                 </form>
             </div>
           </SpotlightCard>
+        </RevealOnScroll> */}
+
+        <RevealOnScroll>
+          <SpotlightCard className="mt-12 p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-transparent">
+            <div className="bg-[#050505] rounded-2xl p-8 md:p-12 relative overflow-hidden h-full">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.5)]"></div>
+
+                <div className="text-center mb-12 relative z-20">
+                  <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Hablemos de negocios</h2>
+                  <p className="text-gray-300">Respondo en menos de 24 horas. Consultas serias solamente.</p>
+                </div>
+
+                {status === "success" ? (
+                  <div className="text-center py-12 animate-fade-in">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 mb-6">
+                      <Send size={32} />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">¡Mensaje Enviado!</h3>
+                    <p className="text-gray-400">Gracias por contactarme. Te responderé pronto.</p>
+                    <button 
+                      onClick={() => setStatus("idle")}
+                      className="mt-6 text-sm text-emerald-400 hover:text-emerald-300 underline"
+                    >
+                      Enviar otro mensaje
+                    </button>
+                  </div>
+                ) : (
+                  <form 
+                    ref={formRef} 
+                    className="space-y-6 relative z-20" 
+                    onSubmit={handleSubmit}
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label htmlFor="name" className="text-xs text-emerald-500 font-mono uppercase tracking-wider block">Nombre / Empresa</label>
+                        <input id="name" name="name" type="text" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white focus:outline-none focus:border-emerald-500 focus:bg-white/10 transition-all" placeholder="Tu Nombre" required />
+                      </div>
+                      <div className="space-y-2">
+                        <label htmlFor="email" className="text-xs text-emerald-500 font-mono uppercase tracking-wider block">Email Corporativo</label>
+                        <input id="email" name="email" type="email" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white focus:outline-none focus:border-emerald-500 focus:bg-white/10 transition-all" placeholder="nombre@empresa.com" required />
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="message" className="text-xs text-emerald-500 font-mono uppercase tracking-wider block">Detalles del Proyecto</label>
+                      <textarea id="message" name="message" rows="4" className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-4 text-white focus:outline-none focus:border-emerald-500 focus:bg-white/10 transition-all resize-none" placeholder="Presupuesto, plazos y objetivos..." required></textarea>
+                    </div>
+                    
+                    <div className="pt-4">
+                      <button 
+                        type="submit" 
+                        disabled={status === "sending"}
+                        className="w-full group relative px-8 py-5 bg-white text-black font-bold tracking-wider overflow-hidden rounded-lg hover:bg-emerald-400 transition-colors duration-300 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-black disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          {status === "sending" ? "ENVIANDO..." : "ENVIAR MENSAJE"} 
+                          {(status === "idle" || status === "error") && <Send size={18} className="group-hover:translate-x-1 transition-transform" />}
+                        </span>
+                      </button>
+                      {status === "error" && (
+                        <p className="text-red-400 text-sm text-center mt-4">Hubo un error al enviar. Verifica tu configuración.</p>
+                      )}
+                    </div>
+                  </form>
+                )}
+            </div>
+          </SpotlightCard>
         </RevealOnScroll>
 
         <RevealOnScroll>
@@ -425,7 +519,7 @@ const Contact = () => {
         </RevealOnScroll>
       </div>
     </section>
-  );
+  ); 
 };
 
 // --- App Principal (SPA) ---
