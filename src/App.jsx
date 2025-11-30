@@ -363,7 +363,7 @@ const Expertise = () => {
 };
 
 const Contact = () => {
-  const Contact = () => {
+ 
   const formRef = useRef();
   const [status, setStatus] = useState("idle");
 
