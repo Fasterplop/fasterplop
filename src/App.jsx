@@ -579,17 +579,17 @@ const App = () => {
           </div>
 
           {/* Botón Móvil */}
-          <button 
+          {/* <button 
             className="md:hidden text-white z-50 relative p-2 focus:text-emerald-400" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={isOpen}
           >
             {isOpen ? <X /> : <Menu />}
-          </button>
+          </button> */}
 
           {/* Menú Móvil Overlay */}
-          {isOpen && (
+          {/* {isOpen && (
             <div className="fixed inset-0 bg-black/98 flex flex-col items-center justify-center space-y-8 z-40">
               {navItems.map((item, idx) => (
                 <a 
@@ -602,7 +602,7 @@ const App = () => {
                 </a>
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </nav>
 
