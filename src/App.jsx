@@ -13,7 +13,7 @@ import emailjs from '@emailjs/browser';
 //       { name: 'description', content: "Ayudo a empresas a escalar ventas mediante desarrollo web optimizado. Especialista en React, SEO técnico y Accesibilidad web." },
 //       { property: 'og:title', content: "Fasterplop | Desarrollo Web & SEO" },
 //       { property: 'og:description', content: "Desarrollo web de alto rendimiento para empresas que buscan escalar." },
-//       { property: 'og:image', content: "https://fasterplop.com/og-image-main.jpg" }, // ¡Asegúrate de crear y subir esta imagen!
+//       { property: 'og:image', content: "https://fasterplop.com/og-image.jpg" }, // ¡Asegúrate de crear y subir esta imagen!
 //       { property: 'og:type', content: 'website' },
 //       { name: 'twitter:card', content: 'summary_large_image' },
 //       { name: 'robots', content: 'index, follow' }
